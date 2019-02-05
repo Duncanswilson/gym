@@ -24,7 +24,6 @@ class CarEnv2D(gym.Env):
         self.max_velocity = 5 
         self.max_turn = np.pi
         self.viewer = None
-        self.clipped_action = np.zeros(2)
 
         high = np.array([100.0, 100.0, np.pi, 100, 100, np.pi])        
         low = np.array([0.0, 0.0, -np.pi, 100, 100, -np.pi])
@@ -33,7 +32,7 @@ class CarEnv2D(gym.Env):
                                        dtype=np.float32)
         self.observation_space = spaces.Box(low=low, high=high, dtype=np.float32)
         self.seed()
-
+        self.reset()
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
@@ -128,6 +127,8 @@ class CarEnv2D(gym.Env):
         self.goal[1] = 95.0
         self.goal[2] = np.pi / 4.0
         self.history = []
+        self.clipped_action = np.zeros(2)
+
         
         return self._get_obs()
 
