@@ -85,6 +85,12 @@ register(
 )
 
 register(
+    id='CarWorld-v0',
+    entry_point='gym.envs.classic_control:CarEnv2D',
+    max_episode_steps=1024,
+)
+
+register(
     id='Acrobot-v1',
     entry_point='gym.envs.classic_control:AcrobotEnv',
     max_episode_steps=500,
