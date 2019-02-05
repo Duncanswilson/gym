@@ -24,6 +24,7 @@ class CarEnv2D(gym.Env):
         self.max_velocity = 5 
         self.max_turn = np.pi
         self.viewer = None
+        self.clipped_action = np.zeros(2)
 
         high = np.array([100.0, 100.0, np.pi, 100, 100, np.pi])        
         low = np.array([0.0, 0.0, -np.pi, 100, 100, -np.pi])
