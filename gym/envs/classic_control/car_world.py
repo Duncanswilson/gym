@@ -61,7 +61,7 @@ class CarEnv2D(gym.Env):
         reward = -(x_err**2 + y_err**2)
 
         In this configuration, an optimal agent gets a reward of 
-        -1412676.7893478922
+        -1412666.3084969358
         '''
 
         obs = None
