@@ -87,11 +87,15 @@ class CarEnv2D(gym.Env):
 
         x_err = self.state[0] - self.goal[0]
         y_err = self.state[1] - self.goal[1]
-        # theta_err = self.state[2] - self.goal[2]
-        # theta_err = (theta_err + np.pi) % (2 * np.pi) - np.pi
+
         theta_err = 180 - abs(abs(self.goal[2]- self.state[2]) - 180); 
-        # print(theta_err)
         s_err = np.asarray([x_err, y_err, theta_err])
+        
+        #NOTE: this done condition is a placeholder
+        # plz replace with a better done check
+        if abs(x_err) + abs(y_err) < 1:
+            if theta_err < 0.1:
+                return obs, 10, True, {}
         
         x_cost = 1.0
         y_cost = 1.0
@@ -107,7 +111,6 @@ class CarEnv2D(gym.Env):
 
         c_t = s_err.T @ Q_t @ s_err
         reward = -c_t
-                
         return obs, reward, done, {}
 
     def reset(self):
